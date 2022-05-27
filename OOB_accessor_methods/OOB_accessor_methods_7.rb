@@ -1,20 +1,16 @@
-# Avoid Mutation
+# Prefix the Name
 
-# The following code is flawed. It currently allows @name to be modified from
-# outside the method via a destructive method call. Fix the code so that it
-# returns a copy of @name instead of a reference to it.
+# Using the following code, add the appropriate accessor methods so
+# that @name is returned with the added prefix 'Mr.'.
 
 class Person
-
-  def initialize(name)
-    @name = name
-  end
+  attr_writer :name
 
   def name
-    @name.clone
+    "Mr. #{@name}"
   end
 end
 
-person1 = Person.new('James')
-person1.name.reverse!
+person1 = Person.new
+person1.name = 'James'
 puts person1.name

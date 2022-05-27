@@ -1,18 +1,20 @@
-# Calculated Age
+# Avoid Mutation
 
-# Using the following code, multiply @age by 2 upon assignment,
-# then multiply @age by 2 again when @age is returned by the getter method.
+# The following code is flawed. It currently allows @name to be modified from
+# outside the method via a destructive method call. Fix the code so that it
+# returns a copy of @name instead of a reference to it.
 
 class Person
-  def age
-    @age * 2
+
+  def initialize(name)
+    @name = name
   end
 
-  def age=(age)
-    @age = age * 2
+  def name
+    @name.clone
   end
 end
 
-person1 = Person.new
-person1.age = 20
-puts person1.age
+person1 = Person.new('James')
+person1.name.reverse!
+puts person1.name
